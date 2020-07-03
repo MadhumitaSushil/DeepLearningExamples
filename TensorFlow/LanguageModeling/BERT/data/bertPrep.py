@@ -111,7 +111,7 @@ def main(args):
 
     elif args.action == 'sharding':
         # Note: books+wiki requires user to provide list of input_files (comma-separated with no spaces)
-        if args.dataset == 'bookscorpus' or 'wikicorpus' in args.dataset or 'books_wiki' in args.dataset or 'pubmed' in args.dataset:
+        if args.dataset == 'bookscorpus' or 'wikicorpus' in args.dataset or 'books_wiki' in args.dataset or 'pubmed' in args.dataset or args.dataset == 'medbooks' or args.dataset == 'wikimed':
             if args.input_files is None:
                 if args.dataset == 'bookscorpus':
                     args.input_files = [directory_structure['formatted'] + '/bookscorpus_one_book_per_line.txt']
@@ -123,6 +123,10 @@ def main(args):
                     args.input_files = [directory_structure['formatted'] + '/bookscorpus_one_book_per_line.txt', directory_structure['formatted'] + '/wikicorpus_en_one_article_per_line.txt']
                 elif args.dataset == 'pubmed_baseline':
                     args.input_files = [directory_structure['formatted'] + '/pubmed_baseline_one_article_per_line.txt']
+                elif args.dataset == 'medbooks':
+                    args.input_files = [directory_structure['formatted'] + '/medbooks_one_chapter_per_line.txt']
+                elif args.dataset == 'wikimed':
+                    args.input_files = [directory_structure['formatted'] + '/wikimed_one_article_per_line.txt']
 
             output_file_prefix = directory_structure['sharded'] + '/' + args.dataset + '/' + args.dataset
 
@@ -274,7 +278,9 @@ if __name__ == "__main__":
             'MRPC',
             'CoLA',
             'MNLI',
-            'all'
+            'all',
+            'medbooks',
+            'wikimed',
         }
     )
 
