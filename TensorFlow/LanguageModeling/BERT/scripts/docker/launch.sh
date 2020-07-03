@@ -4,7 +4,8 @@ CMD=${@:-/bin/bash}
 NV_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES:-"all"}
 
 
-nvidia-docker run --rm -it \
+docker run --rm -it \
+    --gpus all \
     --net=host \
     --shm-size=1g \
     --ulimit memlock=-1 \
